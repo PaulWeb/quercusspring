@@ -8,7 +8,7 @@ folder "Test".
 
 Links
 ==============
-`Quercus`_ is a part of resin.
-.. _`Quercus`: http://www.caucho.com/resin-3.1/doc/quercus.xtp#compiling 
+[Quercus](http://www.caucho.com/resin-3.1/doc/quercus.xtp) is a part of resin.
+
 
 
