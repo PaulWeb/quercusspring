@@ -23,6 +23,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.caucho.quercus.env.Env;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 
 /**
  *
@@ -65,14 +71,14 @@ public class PHPToJavaTypesTest {
         assertEquals(primitiveContainer.getFloat(), 32.2, 0.0);
         assertEquals(primitiveContainer.getBool(), true);
         assertEquals(primitiveContainer.getString(), "hello");
-        assertEquals(primitiveContainer.getArray().get(2), new Long(3)); // because get returns Object
+        assertEquals(primitiveContainer.getArray().get(2), new Long(3)); // new Long() because get returns Object
         assertEquals(primitiveContainer.getNull(), null);
         assertEquals(((ObjectValue) primitiveContainer.getObject()).getClassName(), "testObject");
         assertEquals(primitiveContainer.getMap().get("two"), new Long(2));
     }    
     
     @Test
-    public void typesSettersTest() {
+    public void typesSettersTest() throws MalformedURLException {
         assertNotNull(primitiveContainer);
         assertEquals(primitiveContainer.setNull(null), null);
         assertEquals(primitiveContainer.setBoolean(true), true);
@@ -85,13 +91,32 @@ public class PHPToJavaTypesTest {
         assertEquals(primitiveContainer.setFloat(new Float(32.2)), 32.2, 0.1);
         assertEquals(primitiveContainer.setDouble(32.2), 32.2, 0.0);
         assertEquals(primitiveContainer.setString("hello"), "hello");
-        //Env.getCurrent().wrapJava("hello".charAt(0));
-        assertEquals(primitiveContainer.setChar("hello".charAt(0)), "h"); //FIXME
-        //assertEquals(primitiveContainer.setCharArray("hello".toCharArray()), "hello");
-        //assertEquals(primitiveContainer.setByteArray("hello".getBytes()), "hello");
-        //int[] z = {0, 1, 2, 3};
-        //assertEquals(primitiveContainer.setArray(z), z);
-        
+        int[] z = {0, 1, 2, 3};
+        assertTrue(primitiveContainer.setArray(z).get(0) == z[0]);
+        Calendar c = Calendar.getInstance();
+        assertTrue(primitiveContainer.setCalendar(c) <= c.getTimeInMillis());
+        Date d = new Date();
+        assertTrue(primitiveContainer.setDate(d) <= d.getTime());
+        assertTrue(primitiveContainer.setList(new ArrayList()).isEmpty());
+        assertTrue(primitiveContainer.setMap(new HashMap()).isEmpty());
+        TestPOJO t = (TestPOJO) primitiveContainer.setObject(new TestPOJO());
+        assertTrue(t.test() == 1);
+        assertTrue(primitiveContainer.setCharArray("hello".toCharArray()).get(0).equals("h")); //FIXME. For some strange reason PHP returns ArrayList.
+                                                                                //But according to http://www.caucho.com/resin-3.1/doc/quercus.xtp#Javamethodarguments
+                                                                                //it must return String. Because char[] converting to PHP string and
+                                                                                //PHP string converts to Java String. So here we have behaviour,
+                                                                                //which not correspond with documentation. There may be error in
+                                                                                //documentation, or in Quercus itself.
+        assertTrue(primitiveContainer.setByteArray("hello".getBytes()).get(0) == 104); //FIXME. See commentary above. 
+                                                                                //There is absolutely identical error. Return ArrayList<Long>, but
+                                                                                //must String, according to documentation.
+        assertEquals(primitiveContainer.setURL(new URL("http://java.sun.com/index.html")), new URL("http://java.sun.com/index.html")); //FIXME
+                                                                                //Like two before. Returns java.net.URL, but must return String.
+        assertEquals(primitiveContainer.setChar("hello".charAt(0)), "h"); //FIXME: failed. Fails occurs due to this fuction call
+                                                                          //"Env.getCurrent().wrapJava("hello".charAt(0));", which used in
+                                                                          //PHPScriptUtils.convertToValues to convert Java type to PHP. Can't
+                                                                          //imagine, why this call fails, because wrapJava - function does not have
+                                                                          //any limitations, saying that is can't convert Java type "char".
     }        
     
 }

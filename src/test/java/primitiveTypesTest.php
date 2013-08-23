@@ -98,4 +98,16 @@ function setObject($x){
     return $x;
 }
 
+function setDate($x){
+    return $x;
+}
+
+function setCalendar($x){
+    return $x;
+}
+
+function setURL($x){
+    return $x;
+}
+
 ?>

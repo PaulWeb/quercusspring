@@ -4,6 +4,9 @@
  */
 package org.wp.test.spring.php;
 
+import java.net.URL;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -32,9 +35,12 @@ public interface PrimitiveTypesContainer {
     double setDouble(double x);
     String setString(String x);
     String setChar(char x);
-    String setCharArray(char[] x);
-    String setByteArray(byte[] x);
-    long[] setArray(int[] x);
+    List<String> setCharArray(char[] x);
+    List<Long> setByteArray(byte[] x);
+    List<Long> setArray(int[] x);
+    int setCalendar(Calendar x);
+    int setDate(Date x);
+    URL setURL(URL x);
     List setList(List x);
     Map setMap(Map x);
     Object setObject(Object x);
