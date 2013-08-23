@@ -204,6 +204,8 @@ public abstract class PHPScriptUtils {
             }
             Value[] phpArgs = new Value[args.length];
             for (int i = 0; i < args.length; ++i) {
+                if (args[i] != null && args[i].getClass() == Character.class) // due to prevent bug in Quercus: Env.wrapJava(Character c) fails.
+                        args[i] = ((Character)args[i]).toString();
                 phpArgs[i] = _adptr.getEnv().wrapJava(args[i]);
             }
             return phpArgs;
