@@ -35,8 +35,8 @@ public interface PrimitiveTypesContainer {
     double setDouble(double x);
     String setString(String x);
     String setChar(char x);
-    List<String> setCharArray(char[] x);
-    List<Long> setByteArray(byte[] x);
+    String setCharArray(char[] x);
+    String setByteArray(byte[] x);
     List<Long> setArray(int[] x);
     int setCalendar(Calendar x);
     int setDate(Date x);
