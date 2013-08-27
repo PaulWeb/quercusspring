@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="1.25" errors="1" skipped="0" tests="2" name="org.wp.test.spring.php.PHPToJavaTypesTest">
+<testsuite failures="0" time="1.569" errors="0" skipped="0" tests="2" name="org.wp.test.spring.php.PHPToJavaTypesTest">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64"/>
@@ -31,7 +31,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="51.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="os.version" value="3.2.0-51-generic"/>
+    <property name="os.version" value="3.2.0-52-generic"/>
     <property name="user.home" value="/home/user"/>
     <property name="user.timezone" value="Asia/Vladivostok"/>
     <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"/>
@@ -59,64 +59,6 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase time="1.048" classname="org.wp.test.spring.php.PHPToJavaTypesTest" name="typesGettersTest"/>
-  <testcase time="0.021" classname="org.wp.test.spring.php.PHPToJavaTypesTest" name="typesSettersTest">
-    <error message="java.lang.Character cannot be cast to java.lang.String" type="java.lang.ClassCastException">java.lang.ClassCastException: java.lang.Character cannot be cast to java.lang.String
-	at com.caucho.quercus.program.JavaClassDef$StringClassDef.wrap(JavaClassDef.java:1696)
-	at com.caucho.quercus.env.Env.wrapJava(Env.java:4696)
-	at org.wp.spring.php.PHPScriptUtils$PHPObjectInvocationHandler.convertToValues(PHPScriptUtils.java:207)
-	at org.wp.spring.php.PHPScriptUtils$PHPObjectInvocationHandler.invoke(PHPScriptUtils.java:181)
-	at com.sun.proxy.$Proxy31.setChar(Unknown Source)
-	at org.wp.test.spring.php.PHPToJavaTypesTest.typesSettersTest(PHPToJavaTypesTest.java:89)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:606)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
-	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:74)
-	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
-	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:83)
-	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:72)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:231)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:88)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
-	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
-	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
-	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
-	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
-	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:174)
-	at org.apache.maven.surefire.junit4.JUnit4TestSet.execute(JUnit4TestSet.java:53)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:123)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:104)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:606)
-	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:164)
-	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:110)
-	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
-	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
-</error>
-    <system-out>DEBUG [main] - Retrieved @ProfileValueSourceConfiguration [null] for test class [org.wp.test.spring.php.PHPToJavaTypesTest]
-DEBUG [main] - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [org.wp.test.spring.php.PHPToJavaTypesTest]
-DEBUG [main] - Retrieved ApplicationContext for test class [class org.wp.test.spring.php.PHPToJavaTypesTest] from cache with key [[MergedContextConfiguration@12d04843 testClass = PHPToJavaTypesTest, locations = &apos;{classpath:test-context.xml}&apos;, classes = &apos;{}&apos;, contextInitializerClasses = &apos;[]&apos;, activeProfiles = &apos;{}&apos;, contextLoader = &apos;org.springframework.test.context.support.DelegatingSmartContextLoader&apos;]].
-DEBUG [main] - Performing dependency injection for test context [[TestContext@59d6ab48 testClass = PHPToJavaTypesTest, testInstance = org.wp.test.spring.php.PHPToJavaTypesTest@122e961f, testMethod = [null], testException = [null], mergedContextConfiguration = [MergedContextConfiguration@12d04843 testClass = PHPToJavaTypesTest, locations = &apos;{classpath:test-context.xml}&apos;, classes = &apos;{}&apos;, contextInitializerClasses = &apos;[]&apos;, activeProfiles = &apos;{}&apos;, contextLoader = &apos;org.springframework.test.context.support.DelegatingSmartContextLoader&apos;]]].
-DEBUG [main] - Retrieved ApplicationContext for test class [class org.wp.test.spring.php.PHPToJavaTypesTest] from cache with key [[MergedContextConfiguration@12d04843 testClass = PHPToJavaTypesTest, locations = &apos;{classpath:test-context.xml}&apos;, classes = &apos;{}&apos;, contextInitializerClasses = &apos;[]&apos;, activeProfiles = &apos;{}&apos;, contextLoader = &apos;org.springframework.test.context.support.DelegatingSmartContextLoader&apos;]].
-DEBUG [main] - Processing injected method of bean &apos;org.wp.test.spring.php.PHPToJavaTypesTest&apos;: AutowiredFieldElement for private org.wp.test.spring.php.PrimitiveTypesContainer org.wp.test.spring.php.PHPToJavaTypesTest.primitiveContainer
-DEBUG [main] - Returning cached instance of singleton bean &apos;primitiveContainer&apos;
-DEBUG [main] - Retrieved ApplicationContext for test class [class org.wp.test.spring.php.PHPToJavaTypesTest] from cache with key [[MergedContextConfiguration@12d04843 testClass = PHPToJavaTypesTest, locations = &apos;{classpath:test-context.xml}&apos;, classes = &apos;{}&apos;, contextInitializerClasses = &apos;[]&apos;, activeProfiles = &apos;{}&apos;, contextLoader = &apos;org.springframework.test.context.support.DelegatingSmartContextLoader&apos;]].
-DEBUG [main] - After test method: context [[TestContext@59d6ab48 testClass = PHPToJavaTypesTest, testInstance = org.wp.test.spring.php.PHPToJavaTypesTest@122e961f, testMethod = typesSettersTest@PHPToJavaTypesTest, testException = java.lang.ClassCastException: java.lang.Character cannot be cast to java.lang.String, mergedContextConfiguration = [MergedContextConfiguration@12d04843 testClass = PHPToJavaTypesTest, locations = &apos;{classpath:test-context.xml}&apos;, classes = &apos;{}&apos;, contextInitializerClasses = &apos;[]&apos;, activeProfiles = &apos;{}&apos;, contextLoader = &apos;org.springframework.test.context.support.DelegatingSmartContextLoader&apos;]]], class dirties context [false], class mode [null], method dirties context [false].
-DEBUG [main] - Resetting RequestContextHolder for test context [TestContext@59d6ab48 testClass = PHPToJavaTypesTest, testInstance = org.wp.test.spring.php.PHPToJavaTypesTest@122e961f, testMethod = typesSettersTest@PHPToJavaTypesTest, testException = java.lang.ClassCastException: java.lang.Character cannot be cast to java.lang.String, mergedContextConfiguration = [MergedContextConfiguration@12d04843 testClass = PHPToJavaTypesTest, locations = &apos;{classpath:test-context.xml}&apos;, classes = &apos;{}&apos;, contextInitializerClasses = &apos;[]&apos;, activeProfiles = &apos;{}&apos;, contextLoader = &apos;org.springframework.test.context.support.DelegatingSmartContextLoader&apos;]].
-</system-out>
-  </testcase>
+  <testcase time="1.052" classname="org.wp.test.spring.php.PHPToJavaTypesTest" name="typesGettersTest"/>
+  <testcase time="0.339" classname="org.wp.test.spring.php.PHPToJavaTypesTest" name="typesSettersTest"/>
 </testsuite>

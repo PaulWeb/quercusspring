@@ -23,6 +23,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.caucho.quercus.env.Env;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 
 /**
  *
@@ -65,14 +71,14 @@ public class PHPToJavaTypesTest {
         assertEquals(primitiveContainer.getFloat(), 32.2, 0.0);
         assertEquals(primitiveContainer.getBool(), true);
         assertEquals(primitiveContainer.getString(), "hello");
-        assertEquals(primitiveContainer.getArray().get(2), new Long(3)); // because get returns Object
+        assertEquals(primitiveContainer.getArray().get(2), new Long(3)); // new Long() because get returns Object
         assertEquals(primitiveContainer.getNull(), null);
         assertEquals(((ObjectValue) primitiveContainer.getObject()).getClassName(), "testObject");
         assertEquals(primitiveContainer.getMap().get("two"), new Long(2));
     }    
     
     @Test
-    public void typesSettersTest() {
+    public void typesSettersTest() throws MalformedURLException {
         assertNotNull(primitiveContainer);
         assertEquals(primitiveContainer.setNull(null), null);
         assertEquals(primitiveContainer.setBoolean(true), true);
@@ -85,13 +91,20 @@ public class PHPToJavaTypesTest {
         assertEquals(primitiveContainer.setFloat(new Float(32.2)), 32.2, 0.1);
         assertEquals(primitiveContainer.setDouble(32.2), 32.2, 0.0);
         assertEquals(primitiveContainer.setString("hello"), "hello");
-        //Env.getCurrent().wrapJava("hello".charAt(0));
-        assertEquals(primitiveContainer.setChar("hello".charAt(0)), "h"); //FIXME
-        //assertEquals(primitiveContainer.setCharArray("hello".toCharArray()), "hello");
-        //assertEquals(primitiveContainer.setByteArray("hello".getBytes()), "hello");
-        //int[] z = {0, 1, 2, 3};
-        //assertEquals(primitiveContainer.setArray(z), z);
-        
+        int[] z = {0, 1, 2, 3};
+        assertTrue(primitiveContainer.setArray(z).get(0) == z[0]);
+        Calendar c = Calendar.getInstance();
+        assertTrue(primitiveContainer.setCalendar(c) <= c.getTimeInMillis());
+        Date d = new Date();
+        assertTrue(primitiveContainer.setDate(d) <= d.getTime());
+        assertTrue(primitiveContainer.setList(new ArrayList()).isEmpty());
+        assertTrue(primitiveContainer.setMap(new HashMap()).isEmpty());
+        TestPOJO t = (TestPOJO) primitiveContainer.setObject(new TestPOJO());
+        assertTrue(t.test() == 1);
+        assertEquals(primitiveContainer.setCharArray("hello".toCharArray()), "hello");
+        assertEquals(primitiveContainer.setByteArray("hello".getBytes()), "hello");
+        assertEquals(primitiveContainer.setURL(new URL("http://java.sun.com/index.html")), new URL("http://java.sun.com/index.html"));
+        assertEquals(primitiveContainer.setChar("hello".charAt(0)), "h");
     }        
     
 }
