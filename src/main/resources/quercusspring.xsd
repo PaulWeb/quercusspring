@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<xsd:schema xmlns="http://github.com/PaulWeb/quercusspring"
+		xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                xmlns:spring-lang="http://www.springframework.org/schema/lang"
+		targetNamespace="http://github.com/PaulWeb/quercusspring"
+		elementFormDefault="qualified"
+		attributeFormDefault="unqualified">
+
+    
+    <xsd:import namespace="http://www.springframework.org/schema/beans" 
+        schemaLocation="http://www.springframework.org/schema/beans/spring-beans-2.0.xsd"/>
+    <xsd:import namespace="http://www.springframework.org/schema/lang" 
+        schemaLocation="http://www.springframework.org/schema/lang/spring-lang.xsd"/>
+    
+    <xsd:annotation>
+        <xsd:documentation><![CDATA[
+        Defines the elements used in the Spring Framework's PHP language support.
+        ]]></xsd:documentation>
+    </xsd:annotation>
+
+    <xsd:element name="php" type="spring-lang:dynamicScriptType">
+        <xsd:annotation>
+            <xsd:documentation><![CDATA[
+            A Spring bean backed by a PHP class definition.
+            ]]></xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+</xsd:schema>
