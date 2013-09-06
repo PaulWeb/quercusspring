@@ -5,6 +5,8 @@
 package org.wp.spring.php;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.BeanClassLoaderAware;
@@ -50,7 +52,7 @@ public class PHPScriptFactory implements ScriptFactory, BeanClassLoaderAware {
     public Object create(String scriptSourceLocator, Class[] scriptInterfaces) {
         return create(scriptSourceLocator, scriptInterfaces, null);
     }
-
+    
     public Object create(String scriptSourceLocator, Class[] scriptInterfaces, Class superClass) {
         Assert.hasText(scriptSourceLocator, "'scriptSourceLocator' must not be empty");
         Assert.notEmpty(scriptInterfaces, "'scriptInterfaces' must not be empty");

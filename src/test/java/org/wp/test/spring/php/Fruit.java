@@ -14,5 +14,5 @@ public interface Fruit {
     String type();
     boolean isEmpty();
     int getId();
-    
+    void setId(int id);
 }

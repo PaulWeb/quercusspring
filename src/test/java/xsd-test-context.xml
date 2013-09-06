@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:quercus="http://github.com/PaulWeb/quercusspring"
+       xmlns:lang="http://www.springframework.org/schema/lang"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+                           http://github.com/PaulWeb/quercusspring 
+                           http://localhost/quercusspring.xsd
+                           http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.2.xsd">
+    <context:annotation-config />
+
+    <bean id="phpContext" class="org.wp.spring.php.PHPContext" init-method="init" destroy-method="destroy" />
+    <bean id="env" class="org.wp.spring.php.PHPEnvironment" init-method="init" destroy-method="destroy" >
+        <property name="context" ref="phpContext"/>    
+    </bean>
+    <bean id="phpFactory" class="org.wp.spring.php.PHPScriptFactory">        
+        <property name="environment" ref="env"/>
+    </bean>
+    <bean id="phpFactoryLayer" class="org.wp.spring.php.PHPScriptFactoryLayer" />
+
+
+    <quercus:php id="lime" 
+          script-source="src/test/java/test.php" 
+          script-interfaces="org.wp.test.spring.php.Lime" />
+    <quercus:php id="fruit" script-interfaces="org.wp.test.spring.php.Fruit">
+        <lang:inline-script>
+            $id = 1;
+            function getId() {
+                global $id;
+                return $id;
+            }
+            function setId($newId) {
+                global $id;
+                $id = $newId;
+            }
+        </lang:inline-script>
+        <lang:property name="id" value="12" />
+    </quercus:php>
+</beans>
