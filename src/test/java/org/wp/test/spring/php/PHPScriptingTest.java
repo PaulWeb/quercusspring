@@ -192,12 +192,13 @@ public class PHPScriptingTest {
         if (!file.exists()) {
             file.createNewFile();
         }
-        // write(path, content);
+        write(path, content);
 
         Class[] is = {Lime.class};
         Lime obj = (Lime) fact.create(path, is, Lime.class);
         // log.info(obj.wantIt());
-        assertEquals("LIME", obj.type());
+        String res = obj.type();
+        assertEquals("LIME", res);
 
         write(path, content.replace("LIME", "LIMECOOL"));
         Thread.currentThread().sleep(5000);

@@ -58,7 +58,7 @@ public abstract class PHPScriptUtils {
      * @return true if it is script or false if it is file
      */
     public static boolean isItScript(String str) {
-        return (str != null && !str.isEmpty() && str.indexOf("<?php") >= 0);
+        return (str != null && !str.isEmpty() && str.indexOf("<?php") != -1);
     }
 
     /**
@@ -79,7 +79,7 @@ public abstract class PHPScriptUtils {
         QAdapter _adapter = new QAdapter();
         Object result = null;
         try {
-            _adapter.compile(env, script, superclass);
+            _adapter.compile(env, script, superclass, interfaces);
             result = Proxy.newProxyInstance(classLoader, interfaces, new PHPObjectInvocationHandler(_adapter));
 
         } catch (Exception ex) {
@@ -97,7 +97,7 @@ public abstract class PHPScriptUtils {
         try {
             env = new Env(context);          
             env.start();
-            _adapter.compile(env, scriptSource, superclass);
+            _adapter.compile(env, scriptSource, superclass, interfaces);
             result = Proxy.newProxyInstance(classLoader, interfaces, new PHPObjectInvocationHandler(_adapter));
         } catch (Exception ex) {
             if (env != null) {
@@ -244,12 +244,14 @@ public abstract class PHPScriptUtils {
             return this._env;
         }
 
-        public void compile(Env env, String path, Class superClass) {
+        public void compile(Env env, String path, Class superClass, Class[] interfaces) {
             compile(env, path);
             setSuperClass(superClass);
+            if (_mode == MODE.PAGE && interfaces.length > 0)
+                setSuperClass(interfaces[0]);
         }
 
-        public void compile(Env env, String path) {
+        private void compile(Env env, String path) {
             try {
                 this._env = env;
                 if (!isItScript(path)) {

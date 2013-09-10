@@ -30,12 +30,12 @@
             $id = 1;
             function getId() {
                 global $id;
-                return $id;
-            }
+                    return $id;
+                }
             function setId($newId) {
                 global $id;
-                $id = $newId;
-            }
+                    $id = $newId;
+                }
         </lang:inline-script>
         <lang:property name="id" value="12" />
     </quercus:php>

@@ -1,9 +1,5 @@
 <?php
 
-$empty = False;
-$type = "LIME";
-$id =  "14";
-
 class Lime {
 
     protected $id=14;
@@ -31,27 +27,6 @@ class Lime {
         $this->empty = true;
     }
 
-}
-
-function getId() {
-    global $id;
-    return $id;
-}
-
-function type() {
-    global $type;
-    return $type;
-}
-
-function isEmpty() {
-    global $empty;
-
-    return $empty;
-}
-
-function eatIt() {
-    global $empty;
-    $empty = True;
 }
 
 ?>
