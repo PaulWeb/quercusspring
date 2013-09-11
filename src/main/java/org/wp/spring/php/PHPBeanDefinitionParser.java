@@ -19,12 +19,12 @@ public class PHPBeanDefinitionParser extends AbstractSingleBeanDefinitionParser{
 
     @Override
     protected String getBeanClassName(Element element) {
-        return "org.wp.spring.php.PHPScriptFactoryLayer";
+        return "org.wp.spring.php.PHPScriptUtils";
     }
     
     @Override
     protected void doParse(Element element, ParserContext parserContext, BeanDefinitionBuilder bean) {
-        bean.setFactoryMethod("create");
+        bean.setFactoryMethod("createPHPObject");
         String scriptSource;
         List elements = DomUtils.getChildElementsByTagName(element, "inline-script");
         if (!elements.isEmpty())

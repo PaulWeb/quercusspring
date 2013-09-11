@@ -19,7 +19,6 @@
     <bean id="phpFactory" class="org.wp.spring.php.PHPScriptFactory">        
         <property name="environment" ref="env"/>
     </bean>
-    <bean id="phpFactoryLayer" class="org.wp.spring.php.PHPScriptFactoryLayer" />
 
 
     <quercus:php id="lime" 

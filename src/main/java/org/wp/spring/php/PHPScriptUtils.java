@@ -33,8 +33,10 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
 import org.springframework.aop.framework.Advised;
 import org.springframework.aop.support.AopUtils;
+import org.springframework.util.ClassUtils;
 
 /**
  * This class is designed for creating java proxy instance according specification of interface
@@ -89,6 +91,20 @@ public abstract class PHPScriptUtils {
         return result;
     }
 
+    public static Object createPHPObject(String scriptSourceLocator, String scriptInterfaces) throws ClassNotFoundException {
+        String[] list = scriptInterfaces.split(",");
+        Class<?>[] classes = new Class<?>[list.length];
+        for (int i = 0; i < list.length; i++)
+            classes[i] = Class.forName(list[i].trim());
+        QuercusContext context = new QuercusContext();
+        context.start();
+        try {
+            return createPHPObject(context, scriptSourceLocator, classes, ClassUtils.getDefaultClassLoader(), null);
+        } catch (IOException ex) {
+            throw new ClassNotFoundException("Can't find .php-file with PHP implementation of class.");
+        }
+    }
+    
     public static Object createPHPObject(QuercusContext context, String scriptSource, Class[] interfaces, ClassLoader classLoader, Class superclass) throws IOException {
 
         QAdapter _adapter = new QAdapter();
