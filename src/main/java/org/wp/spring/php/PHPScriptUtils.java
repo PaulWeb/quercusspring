@@ -91,28 +91,17 @@ public abstract class PHPScriptUtils {
         return result;
     }
 
-    public static Object createPHPObject(String scriptSourceLocator, String scriptInterfaces) throws ClassNotFoundException {
-        String[] list = scriptInterfaces.split(",");
-        Class<?>[] classes = new Class<?>[list.length];
-        for (int i = 0; i < list.length; i++)
-            classes[i] = Class.forName(list[i].trim());
-        QuercusContext context = new QuercusContext();
-        context.start();
-        try {
-            return createPHPObject(context, scriptSourceLocator, classes, ClassUtils.getDefaultClassLoader(), null);
-        } catch (IOException ex) {
-            throw new ClassNotFoundException("Can't find .php-file with PHP implementation of class.");
-        }
-    }
-    
     public static Object createPHPObject(QuercusContext context, String scriptSource, Class[] interfaces, ClassLoader classLoader, Class superclass) throws IOException {
 
         QAdapter _adapter = new QAdapter();
         Object result = null;
         Env env = null;
         try {
-            env = new Env(context);          
+            env = new Env(context);
+            env.setRuntimeEncoding("UTF-8");
             env.start();
+            env.setTimeLimit(0); // practically disables time limit
+            env.resetTimeout();
             _adapter.compile(env, scriptSource, superclass, interfaces);
             result = Proxy.newProxyInstance(classLoader, interfaces, new PHPObjectInvocationHandler(_adapter));
         } catch (Exception ex) {
@@ -263,7 +252,7 @@ public abstract class PHPScriptUtils {
         public void compile(Env env, String path, Class superClass, Class[] interfaces) {
             compile(env, path);
             setSuperClass(superClass);
-            if (_mode == MODE.PAGE && interfaces.length > 0)
+            if (_mode == MODE.PROGRAMM && interfaces.length > 0)
                 setSuperClass(interfaces[0]);
         }
 
@@ -315,6 +304,8 @@ public abstract class PHPScriptUtils {
                     case SUPER:
                         if (_value == null) {
                             QuercusClass qc = _env.findClass(_superClass.getSimpleName());
+                            if (qc == null)
+                                throw new NullPointerException("Can't find PHP class with name:" + _superClass.getSimpleName());
                             ObjectValue ov = new ObjectExtValue(qc);
                             qc.initObject(_env, ov);
                             _value = qc.callNew(_env, ov);

@@ -85,7 +85,7 @@
         <dependency>
             <groupId>com.caucho</groupId>
             <artifactId>resin</artifactId>
-            <version>4.0.17</version>
+            <version>4.0.30</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

@@ -30,8 +30,10 @@ public class PHPEnvironment {
            throw new NullPointerException("Don't set context!");
        }
        _env=new Env(_context.getContext());
-      _env.setRuntimeEncoding("UTF-8");
+       _env.setRuntimeEncoding("UTF-8");
        _env.start();
+       _env.setTimeLimit(0); // practically disables time limit
+       _env.resetTimeout();
    }
    public void destroy(){
        if(_env!=null){

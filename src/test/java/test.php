@@ -29,4 +29,34 @@ class Lime {
 
 }
 
+$id=14;
+$empty=false;
+$typeb="LIME";
+
+function __construct(/* ... */) {
+    global $id, $empty, $typeb;
+    $id = 14;
+    $typeb = "LIME";
+}
+
+function getId() {
+    global $id, $empty, $typeb;
+    return $id;
+}
+
+function type() {
+    global $id, $empty, $typeb;
+    return $typeb;
+}
+
+function isEmpty() {
+    global $id, $empty, $typeb;
+    return $empty;
+}
+
+function eatIt() {
+    global $id, $empty, $typeb;
+    $empty = true;
+}
+
 ?>

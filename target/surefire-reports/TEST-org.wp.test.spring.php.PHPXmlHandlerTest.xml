@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0.325" errors="0" skipped="0" tests="2" name="org.wp.test.spring.php.PHPXmlHandlerTest">
+<testsuite failures="0" time="0.266" errors="0" skipped="0" tests="2" name="org.wp.test.spring.php.PHPXmlHandlerTest">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64"/>
@@ -41,7 +41,7 @@
     <property name="java.vm.specification.version" value="1.7"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="/usr/lib/jvm/java-7-openjdk-amd64/jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher install"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean install"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="ru"/>
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
@@ -58,6 +58,6 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase time="0.322" classname="org.wp.test.spring.php.PHPXmlHandlerTest" name="getLimeTest"/>
+  <testcase time="0.263" classname="org.wp.test.spring.php.PHPXmlHandlerTest" name="getLimeTest"/>
   <testcase time="0.002" classname="org.wp.test.spring.php.PHPXmlHandlerTest" name="inlineCodeTest"/>
 </testsuite>

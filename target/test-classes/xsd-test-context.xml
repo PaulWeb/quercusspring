@@ -12,30 +12,25 @@
                            http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.2.xsd">
     <context:annotation-config />
 
-    <bean id="phpContext" class="org.wp.spring.php.PHPContext" init-method="init" destroy-method="destroy" />
-    <bean id="env" class="org.wp.spring.php.PHPEnvironment" init-method="init" destroy-method="destroy" >
-        <property name="context" ref="phpContext"/>    
-    </bean>
-    <bean id="phpFactory" class="org.wp.spring.php.PHPScriptFactory">        
-        <property name="environment" ref="env"/>
-    </bean>
-
-
     <quercus:php id="lime" 
-          script-source="src/test/java/test.php" 
+          script-source="classpath:/test.php" 
           script-interfaces="org.wp.test.spring.php.Lime" />
     <quercus:php id="fruit" script-interfaces="org.wp.test.spring.php.Fruit">
         <lang:inline-script>
-            $id = 1;
-            function getId() {
-                global $id;
-                    return $id;
+            &lt;?php
+                class Fruit{
+                    var $id = 1;
+                    function getId() {
+                        return $this->id;
+                    }   
+                    function setId($newId) {
+                        $this->id = $newId;
+                    }
                 }
-            function setId($newId) {
-                global $id;
-                    $id = $newId;
-                }
+            ?&gt;
         </lang:inline-script>
         <lang:property name="id" value="12" />
     </quercus:php>
+    <quercus:php id="phpClassUsingJava" script-source="classpath:javaCallTest.php" 
+          script-interfaces="org.wp.test.spring.php.JavaCallTest" />
 </beans>

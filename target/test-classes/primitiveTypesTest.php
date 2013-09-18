@@ -2,7 +2,6 @@
 
 class testObject{}
 
-class PrimitiveTypesContainer {
     function getInt() {
         return 32;
     }
@@ -110,6 +109,5 @@ class PrimitiveTypesContainer {
     function setURL($x){
         return $x;
     }
-}
 
 ?>

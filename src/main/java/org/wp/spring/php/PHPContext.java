@@ -56,6 +56,7 @@ public class PHPContext {
     }
     public void init() {
         _context = new QuercusContext();
+        _context.init();
         _context.start();
     }
 
