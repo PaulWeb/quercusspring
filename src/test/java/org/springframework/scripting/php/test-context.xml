@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:quercus="http://github.com/PaulWeb/quercusspring"
+       xmlns:lang="http://www.springframework.org/schema/lang"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+                           http://github.com/PaulWeb/quercusspring 
+                           http://localhost/quercusspring.xsd
+                           http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.2.xsd">
+    <context:annotation-config />
+    <!--http://book.javanb.com/Professional-Java-Development-with-the-Spring-Framework/BBL0079.html-->
+
+    <quercus:php id="lime" 
+          script-source="classpath:org/springframework/scripting/php/test.php" 
+          script-interfaces="org.springframework.scripting.php.Lime" />
+    <quercus:php id="primitiveContainer" 
+          script-source="classpath:org/springframework/scripting/php/primitiveTypesTest.php" 
+          script-interfaces="org.springframework.scripting.php.PrimitiveTypesContainer" />
+    <quercus:php id="phpClassUsingJava" script-source="classpath:org/springframework/scripting/php/javaCallTest.php" 
+          script-interfaces="org.springframework.scripting.php.JavaCallTest" />
+    <quercus:php id="inlineLime" script-interfaces="org.springframework.scripting.php.Lime">
+        <lang:inline-script>
+            &lt;?php
+                class Lime{
+                    var $empty = False;
+                    var $type = "LIME";
+                    var $id = 0;
+                    function getId() {
+                        return $this->id;
+                    }
+                    function setId($newId) {
+                        $this->id = $newId;
+                    }
+                    function type() {
+                        return $this->type;
+                    }
+                    function isEmpty() {
+                        return $this->empty;
+                    }
+                    function eatIt() {
+                        $this->empty = True;
+                    }
+                }
+            ?&gt;
+        </lang:inline-script>
+        <lang:property name="id" value="14" />
+    </quercus:php>
+</beans>

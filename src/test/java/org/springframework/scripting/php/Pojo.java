@@ -13,25 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.scripting.config;
-
-import org.springframework.beans.factory.xml.NamespaceHandlerSupport;
+package org.springframework.scripting.php;
 
 /**
  *
  * @author Sergej Varjuhin <cepreu.mail@gmail.com>
  * 
  */
-public class LangNamespaceHandlerWithPhpSupport extends NamespaceHandlerSupport {
-
-	@Override
-	public void init() {
-		registerScriptBeanDefinitionParser("php", "org.springframework.scripting.php.PhpScriptFactory");
-		registerBeanDefinitionParser("defaults", new ScriptingDefaultsParser());
-	}
-
-	private void registerScriptBeanDefinitionParser(String key, String scriptFactoryClassName) {
-		registerBeanDefinitionParser(key, new ScriptBeanDefinitionParser(scriptFactoryClassName));
-	}
-
+public class Pojo {
+    int test(){
+       return 1; 
+    }
 }
