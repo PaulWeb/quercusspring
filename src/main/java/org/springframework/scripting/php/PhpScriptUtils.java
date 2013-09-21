@@ -70,6 +70,7 @@ public abstract class PhpScriptUtils {
             env.start();
             env.setTimeLimit(0); // practically disables time limit
             env.resetTimeout();
+            env.setIni("display_errors", "stderr");
             adapter.compile(env, scriptSource, interfaces);
             result = Proxy.newProxyInstance(classLoader, interfaces, new PHPObjectInvocationHandler(adapter));
         } catch (Exception ex) {
