@@ -1,8 +1,19 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (c) 2013 World Page Company -- all rights reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
-package org.wp.test.spring.php;
+package org.wp.test.view;
 
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
@@ -28,14 +39,15 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
 
 /**
- * 
- * @author Paul Shishakov
+ *
+ * @author Paul Shishakov <paulandweb@gmail.com>
+ *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(locations = {"classpath:test-dispetcher.xml"})
-public class PHPResolverTest {
-    Logger _log = Logger.getLogger(PHPResolverTest.class);
+@ContextConfiguration(locations = {"classpath:org/wp/test/view/test-dispatcher.xml"})
+public class PhpResolverTest {
+    Logger _log = Logger.getLogger(PhpResolverTest.class);
     @Autowired
     private WebApplicationContext wac;
     @Autowired
@@ -44,7 +56,7 @@ public class PHPResolverTest {
     MockHttpServletResponse response;
     private MockMvc mockMvc;
     
-    public PHPResolverTest() {
+    public PhpResolverTest() {
     }
 
     @BeforeClass

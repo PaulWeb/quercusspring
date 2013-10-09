@@ -1,8 +1,19 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (c) 2013 World Page Company -- all rights reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
-package org.wp.test.spring.php;
+package org.springframework.scripting.php;
 
 import com.caucho.quercus.env.ObjectValue;
 import org.junit.After;
@@ -24,20 +35,19 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  *
- * @author user
+ * @author Sergej Varjuhin <cepreu.mail@gmail.com>
+ * 
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)//set order for execiting methods
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:xsd-test-context.xml") // the Spring context file
+@ContextConfiguration(locations = "classpath:org/springframework/scripting/php/test-context.xml") // the Spring context file
 
-public class PHPXmlHandlerTest {
+public class PhpJavaFunctionCallTest {
 
     @Autowired
-    private Lime lime;
-    @Autowired
-    private Fruit fruit;
+    private JavaCallTest phpClassUsingJava;
     
-    public PHPXmlHandlerTest() {
+    public PhpJavaFunctionCallTest() {
     }
 
     @BeforeClass
@@ -57,17 +67,10 @@ public class PHPXmlHandlerTest {
     }    
     
     @Test   
-    public void getLimeTest() {
-        assertNotNull(lime);
-        assertTrue(lime.getId() > 0);
-        assertTrue(lime.type().equals("LIME"));
-    }
-    
-    @Test
-    public void inlineCodeTest() {
-        assertNotNull(fruit);
-        int id = fruit.getId();
-        assertTrue(id == 12);
+    public void testJavaFunctionCall() {
+        assertNotNull(phpClassUsingJava);
+        String testResult = phpClassUsingJava.getResult();
+        assertTrue(testResult.length()>0);
     }
     
 }

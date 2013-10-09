@@ -1,8 +1,19 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (c) 2013 World Page Company -- all rights reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
-package org.wp.test.spring.php;
+package org.springframework.scripting.php;
 
 import com.caucho.quercus.env.ObjectValue;
 import org.apache.log4j.Logger;
@@ -32,20 +43,21 @@ import java.util.HashMap;
 
 /**
  *
- * @author user
+ * @author Sergej Varjuhin <cepreu.mail@gmail.com>
+ * 
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)//set order for execiting methods
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:test-context.xml") // the Spring context file
-public class PHPToJavaTypesTest {
+@ContextConfiguration(locations = "classpath:org/springframework/scripting/php/test-context.xml") // the Spring context file
+public class PhpToJavaTypesTest {
     
-    Logger log = Logger.getLogger(PHPToJavaTypesTest.class);
+    Logger log = Logger.getLogger(PhpToJavaTypesTest.class);
     
     @Autowired
     @Qualifier("primitiveContainer")
     private PrimitiveTypesContainer primitiveContainer;
     
-    public PHPToJavaTypesTest() {
+    public PhpToJavaTypesTest() {
     }
 
     @BeforeClass
@@ -65,7 +77,7 @@ public class PHPToJavaTypesTest {
     }    
 
     @Test   
-    public void typesGettersTest() {
+    public void testTypesGetters() {
         assertNotNull(primitiveContainer);
         assertEquals(primitiveContainer.getInt(), 32);
         assertEquals(primitiveContainer.getFloat(), 32.2, 0.0);
@@ -78,7 +90,7 @@ public class PHPToJavaTypesTest {
     }    
     
     @Test
-    public void typesSettersTest() throws MalformedURLException {
+    public void testTypesSetters() throws MalformedURLException {
         assertNotNull(primitiveContainer);
         assertEquals(primitiveContainer.setNull(null), null);
         assertEquals(primitiveContainer.setBoolean(true), true);
@@ -99,7 +111,7 @@ public class PHPToJavaTypesTest {
         assertTrue(primitiveContainer.setDate(d) <= d.getTime());
         assertTrue(primitiveContainer.setList(new ArrayList()).isEmpty());
         assertTrue(primitiveContainer.setMap(new HashMap()).isEmpty());
-        TestPOJO t = (TestPOJO) primitiveContainer.setObject(new TestPOJO());
+        Pojo t = (Pojo) primitiveContainer.setObject(new Pojo());
         assertTrue(t.test() == 1);
         assertEquals(primitiveContainer.setCharArray("hello".toCharArray()), "hello");
         assertEquals(primitiveContainer.setByteArray("hello".getBytes()), "hello");
