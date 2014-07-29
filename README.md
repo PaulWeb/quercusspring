@@ -4,7 +4,7 @@ SPRING+PHP(QUERCUS)
 About
 =============
 This library allows you to use php in spring as dynamic language and template engine. All samples you can find in 
-folder "Test". 
+folder "Test".  
 
 Links
 ==============
